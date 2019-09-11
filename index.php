@@ -1,4 +1,5 @@
 <?php
+/*
   require __DIR__ . '/vendor/autoload.php';
 
   $options = array(
@@ -13,5 +14,7 @@
   );
 
   $data['message'] = 'hello world';
-  $pusher->trigger('my-channel', 'my-event', $data);
+  $pusher->trigger('my-channel', 'my-event', $data); */
+
+echo "No";
 ?>
