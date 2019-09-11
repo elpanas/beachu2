@@ -15,6 +15,5 @@
 
   $data['message'] = 'hello world';
   $pusher->trigger('my-channel', 'my-event', $data); */
-
-echo "No";
+echo "OK";
 ?>
