@@ -23,7 +23,11 @@ $inputhttp = file_get_contents("php://input"); // legge le info in input
 $content = json_decode($inputhttp,true); // converte il formato json in array associativo
 
 if ($content["username"] == $username && $content["password"] == $password)
-  echo "OK";
+{
+  $risposta["id"] = 1;
+  $risposta["username"] = $username;
+  echo json_encode($risposta);
+}
 else
   echo "NO";
 ?>
