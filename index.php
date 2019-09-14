@@ -15,5 +15,15 @@
 
   $data['message'] = 'hello world';
   $pusher->trigger('my-channel', 'my-event', $data); */
-echo "OK";
+
+$username = "Luca";
+$password = "123456";
+
+$inputhttp = file_get_contents("php://input"); // legge le info in input
+$content = json_decode($inputhttp,true); // converte il formato json in array associativo
+
+if ($content["username"] == $username && $content["password"] == $password)
+  echo "OK";
+else
+  echo "NO";
 ?>
