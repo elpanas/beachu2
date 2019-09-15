@@ -38,7 +38,8 @@ switch($content["azione"])
     $risposta[0]["nome"] = "Lido Nettuno";
     $risposta[0]["indirizzo"] = "Lungomare manfredonia";
     $risposta[0]["localita"] = "Siponto";
-    $risposta[0]["ombrelloni"] = "186";      
+    $risposta[0]["ombrelloni"] = "186";  
+    echo json_encode($risposta);
     break; 
   }
 ?>
