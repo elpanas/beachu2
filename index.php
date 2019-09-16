@@ -40,5 +40,5 @@ if ($content["username"] == $username && $content["password"] == $password)
     echo json_encode($risposta);
   }
 */
-echo json_encode($content);
+echo $content["azione"];
 ?>
