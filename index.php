@@ -38,5 +38,4 @@ if ($content["username"] == $username && $content["password"] == $password)
     $risposta[0]["ombrelloni"] = 186;  
     echo json_encode($risposta);
 
-  }
 ?>
