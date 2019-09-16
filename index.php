@@ -28,8 +28,6 @@ if ($content["username"] == $username && $content["password"] == $password)
   $risposta["username"] = $username;
   echo json_encode($risposta);
 }
-else
-  echo "NO";
 
 switch($content["azione"])
   {
