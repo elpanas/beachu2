@@ -30,7 +30,7 @@ if ($content["username"] == $username && $content["password"] == $password)
 }*/
 
 
-  if ($content["azione"]) 
+  if ($content[0]["azione"]) 
   {
     $risposta[0]["id"] = 1;
     $risposta[0]["nome"] = "Lido Nettuno";
