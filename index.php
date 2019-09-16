@@ -29,15 +29,14 @@ if ($content["username"] == $username && $content["password"] == $password)
   echo json_encode($risposta);
 }*/
 
-switch($content["azione"])
-  {
-  case "listastabilimenti":
+
+  
     $risposta[0]["id"] = 1;
     $risposta[0]["nome"] = "Lido Nettuno";
     $risposta[0]["indirizzo"] = "Lungomare manfredonia";
     $risposta[0]["localita"] = "Siponto";
     $risposta[0]["ombrelloni"] = 186;  
     echo json_encode($risposta);
-    break; 
+
   }
 ?>
