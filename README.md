@@ -1,4 +1,4 @@
-# BeachU
+# BeachU 2.0
 ![Logo](https://github.com/elpanas/BeachU/blob/master/images/logo.png)
 ## Sviluppatore
 
