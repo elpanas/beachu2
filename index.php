@@ -1,44 +1,25 @@
-<?php
-/*
-  require __DIR__ . '/vendor/autoload.php';
-
-  $options = array(
-    'cluster' => "getenv('PUSHER_CLUSTER')",
-    'useTLS' => true
-  );
-  $pusher = new Pusher\Pusher(
-    "getenv('PUSHER_KEY')",
-    "getenv('PUSHER_SECRET')",
-    "getenv('PUSHER_APP_ID')",
-    $options
-  );
-
-  $data['message'] = 'hello world';
-  $pusher->trigger('my-channel', 'my-event', $data); */
-
-$username = "Luca";
-$password = "123456";
+<?php 
+require 'db.php';
 
 $inputhttp = file_get_contents("php://input"); // legge le info in input
 $content = json_decode($inputhttp,true); // converte il formato json in array associativo
 
-if ($content["username"] == $username && $content["password"] == $password)
-{
-  $risposta["id"] = 1;
-  $risposta["username"] = $username;  
+switch(true) {
+    case (isset($content['message']) || isset($content['callback_query'])): // telegram
+    include 'telegram/telegram.php';
+    break;
+
+    case (isset($content['azione'])): // app
+    include 'apps/apps.php';
+    break;
+
+    case 'web': // web
+    break;
+
+    default:
+    // pagina di accesso negato
+    break;   
 }
 
-
-switch ($content["azione"])
-{
-  case "listastabilimenti":
-    $risposta[0]["id"] = 1;
-    $risposta[0]["nome"] = "Lido Nettuno";
-    $risposta[0]["indirizzo"] = "Lungomare manfredonia";
-    $risposta[0]["localita"] = "Siponto";
-    $risposta[0]["ombrelloni"] = 186;
-    $risposta[0]["disponibili"] = 183;
-    break;  
-}
-echo json_encode($risposta);
-?>
+// chiude la connessione al database
+$db->close();
