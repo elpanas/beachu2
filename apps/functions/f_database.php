@@ -148,7 +148,7 @@ function inserisceUtente($db,
                                   username,
                                   password,
                                   telefono,
-                                  mail)
+                                  email)
               VALUES('$nome',
                      '$cognome',
                      '$username',
@@ -156,8 +156,10 @@ function inserisceUtente($db,
                      $telefono,
                      '$email')";
 
-    $db->query($query) or die(mysql_error());
-        
+    if ($db->query($query))
+        return "1";
+    else
+        return "0";
 }
 
 
