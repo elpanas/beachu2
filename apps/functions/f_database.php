@@ -82,14 +82,14 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
     if($result = $db->query($query)) // effettua la query    
         if($result->num_rows > 0) // verifica che esistano record nel db	    		
 	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
-		        $elenco[$i++] = array('id' => $row['id'],
-                                      'nome' => $row['nome'],
-                                      'indirizzo' => $row['indirizzo'],
-                                      'localita' => $row['localita'], 
-                                      'ombrelloni' => $row['ombrelloni'],  	              
-                                      'disponibili' => $row['disponibili'],
-                                      'lat' => $row['latitudine'],
-                                      'long' => $row['longitudine']);
+		        $elenco[$i++] = array('Id' => $row['id'],
+                                      'Nome' => $row['nome'],
+                                      'Indirizzo' => $row['indirizzo'],
+                                      'Localita' => $row['localita'], 
+                                      'Ombrelloni' => $row['ombrelloni'],  	              
+                                      'Disponibili' => $row['disponibili'],
+                                      'Latitudine' => $row['latitudine'],
+                                      'Longitudine' => $row['longitudine']);
     
     $result->free(); // libera la memoria
 	
