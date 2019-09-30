@@ -149,6 +149,8 @@ function inserisceUtente($db,
                      ".$content['telefono'].",
                      '".$content['email']."')";
 
+    echo 'ciao';
+
     if ($db->query($query))
         return "1";
     else
