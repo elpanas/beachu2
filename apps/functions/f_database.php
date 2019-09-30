@@ -156,10 +156,8 @@ function inserisceUtente($db,
                      $telefono,
                      '$email')";
 
-    if ($db->query($query))
-        return "1";
-    else
-        return "0";
+    $db->query($query) or die(mysql_error());
+        
 }
 
 

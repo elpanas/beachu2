@@ -18,7 +18,7 @@ switch(true) {
     break; */
 
     default:
-    echo $content['nome'];
+    echo 'Accesso negato';
     break;   
 }
 
