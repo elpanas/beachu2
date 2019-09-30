@@ -137,11 +137,11 @@ function inserisceUtente($db,
                          $content) { //input: dati json
 
     $query = "INSERT INTO utenti (nome,
-                                cognome,
-                                username,
-                                password,
-                                telefono,
-                                mail)
+                                  cognome,
+                                  username,
+                                  password,
+                                  telefono,
+                                  mail)
               VALUES(".$content['nome'].",
                      ".$content['cognome'].",
                      ".$content['username'].",
@@ -150,9 +150,9 @@ function inserisceUtente($db,
                      ".$content['email'].")";
 
     if ($db->query($query))
-        return 1;
+        return "1";
     else
-        return 0;
+        return "0";
 }
 
 
