@@ -91,7 +91,7 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
                                       'lat' => $row['latitudine'],
                                       'long' => $row['longitudine']);
     
-        $result->free(); // libera la memoria
+    $result->free(); // libera la memoria
 	
     return $elenco; // array 
 }
@@ -127,6 +127,7 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
 
 function inserisceUtente($db,
                          $content) { //input: dati json
+
     $query("INSERT INTO utenti (nome,cognome,username,password,telefono,mail)
             VALUES(".$content['nome'].",
                     ".$content['cognome'].",

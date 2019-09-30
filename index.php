@@ -1,4 +1,5 @@
 <?php 
+require 'config.php';
 require 'db.php';
 
 $inputhttp = file_get_contents("php://input"); // legge le info in input
@@ -17,7 +18,7 @@ switch(true) {
     break;
 
     default:
-    // pagina di accesso negato
+    echo 'Accesso negato';
     break;   
 }
 

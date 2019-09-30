@@ -1,7 +1,5 @@
 <?php
-require 'includes/config.php';
 require 'functions/f_database.php';
-require 'functions/f_messaggio.php';
 
 switch($content['azione']) {
     case 'sessione':
