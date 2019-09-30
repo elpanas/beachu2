@@ -152,7 +152,7 @@ function inserisceUtente($db,
     if ($db->query($query))
         return 1;
     else
-        return 0;
+        return die(mysql_error());
 }
 
 
