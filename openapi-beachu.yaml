@@ -2,7 +2,7 @@ openapi: 3.0.0
 
 info:
   description: 'Questa applicazione permette di ricevere informazioni sulla disponibilità dei ombrelloni negli stabilimenti balneari'
-  version: '1.0.0'
+  version: '2.0.0'
   title: 'BeachU'
   contact:
     name: Luca Panariello

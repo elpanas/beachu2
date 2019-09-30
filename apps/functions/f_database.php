@@ -106,18 +106,26 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
 
     $lat = (isset($content['latitudine'])) ? $content['latitudine'] : null;
     $long = (isset($content['longitudine'])) ? $content['longitudine'] : null;     
+
+    $indirizzo = $content['strada'].",".
     
     $query = "INSERT
-              INTO stabilimenti
-              VALUES (".$content['nome'].",
-                      ".$content['ombrelloni'].",
-                      ".$content['strada'].",
-                      ".$content['civico'].",
-                      ".$content['localita'].",
-                      ".$content['provincia'].",
-                      ".$content['cap'].",
+              INTO stabilimenti (nome,
+                                 indirizzo,
+                                 localita,
+                                 latitudine,
+                                 longitudine,
+                                 idu,
+                                 ombrelloni,
+                                 disponibili)
+              VALUES (".$content['nome'].",   
+                      ".$content['indirizzo'].",                                                                
+                      ".$content['localita'].",                      
                       $lat,
-                      $long)";
+                      $long,
+                      ".$content['idu'].",  
+                      ".$content['ombrelloni'].",
+                      ".$content['ombrelloni'].")";
 
     if ($db->query($query))
         return 1;
@@ -128,13 +136,18 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
 function inserisceUtente($db,
                          $content) { //input: dati json
 
-    $query("INSERT INTO utenti (nome,cognome,username,password,telefono,mail)
-            VALUES(".$content['nome'].",
-                    ".$content['cognome'].",
-                    ".$content['username'].",
-                    ".$content['password'].",
-                    ".$content['telefono'].",
-                    ".$content['email'].")");
+    $query = "INSERT INTO utenti (nome,
+                                cognome,
+                                username,
+                                password,
+                                telefono,
+                                mail)
+              VALUES(".$content['nome'].",
+                     ".$content['cognome'].",
+                     ".$content['username'].",
+                     ".$content['password'].",
+                     ".$content['telefono'].",
+                     ".$content['email'].")";
 
     if ($db->query($query))
         return 1;
