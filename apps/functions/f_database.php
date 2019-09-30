@@ -142,17 +142,17 @@ function inserisceUtente($db,
                                   password,
                                   telefono,
                                   mail)
-              VALUES(".$content['nome'].",
-                     ".$content['cognome'].",
-                     ".$content['username'].",
-                     ".$content['password'].",
+              VALUES('".$content['nome']."',
+                     '".$content['cognome']."',
+                     '".$content['username']."',
+                     '".$content['password']."',
                      ".$content['telefono'].",
-                     ".$content['email'].")";
+                     '".$content['email']."')";
 
     if ($db->query($query))
         return 1;
     else
-        return die(mysql_error());
+        return 0;
 }
 
 
