@@ -136,20 +136,25 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
 function inserisceUtente($db,
                          $content) { //input: dati json
 
+    $nome = $content['nome'];
+    $cognome = $content['cognome'];
+    $username = $content['username'];
+    $password = $content['password'];
+    $telefono = $content['telefono'];
+    $email = $content['email'];
+
     $query = "INSERT INTO utenti (nome,
                                   cognome,
                                   username,
                                   password,
                                   telefono,
                                   mail)
-              VALUES('".$content['nome']."',
-                     '".$content['cognome']."',
-                     '".$content['username']."',
-                     '".$content['password']."',
-                     ".$content['telefono'].",
-                     '".$content['email']."')";
-
-    echo 'ciao';
+              VALUES('$nome',
+                     '$cognome',
+                     '$username',
+                     '$password',
+                     $telefono,
+                     '$email')";
 
     if ($db->query($query))
         return "1";
