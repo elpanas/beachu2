@@ -169,8 +169,8 @@ function loginUtente($db,      // input: oggetto per comunicare col database
                      $psw) {                    
 
     $dati = null; // output: array associativo con i dati
-    $user = $db->real_escape_string($user); // elimina caratteri extra dal parametro
-    $psw = $db->real_escape_string($psw);   // elimina caratteri extra dal parametro
+    /* $user = $db->real_escape_string($user); // elimina caratteri extra dal parametro
+    /* $psw = $db->real_escape_string($psw);   // elimina caratteri extra dal parametro
     $query = "SELECT id,
                      telefono,
                      email                     
