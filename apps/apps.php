@@ -27,7 +27,7 @@ switch($content['azione']) {
     break;
 
     case 'inserisciutente':
-    echo inserisceUtente($db,$content);    
+    $risposta = inserisceUtente($db,$content);    
     break;
 
     case 'aggiornautente':
@@ -35,4 +35,4 @@ switch($content['azione']) {
     break;    
 }
 
-// echo json_encode($risposta);
+echo json_encode($risposta);
