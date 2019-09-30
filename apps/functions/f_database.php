@@ -179,9 +179,9 @@ function loginUtente($db,      // input: oggetto per comunicare col database
     if($result = $db->query($query))        
         if ($result->num_rows > 0)
             while($row = $result->fetch_assoc())
-                $dati = array('idu' => $row['id'],
-                              'tel' => $row['telefono'],
-                              'email' => $row['email']);   
+                $dati = array('Id' => $row['id'],
+                              'Telefono' => $row['telefono'],
+                              'Email' => $row['email']);   
  
     $result->free(); // libera la memoria
 
