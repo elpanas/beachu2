@@ -150,9 +150,9 @@ function inserisceUtente($db,
                      ".$content['email'].")";
 
     if ($db->query($query))
-        return "1";
+        return 1;
     else
-        return "0";
+        return 0;
 }
 
 
