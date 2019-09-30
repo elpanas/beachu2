@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\apps"
+    "\\apps",
+    "\\apps\\functions",
+    "\\telegram",
+    "\\telegram\\includes"
   ],
-  "SelectedNode": "\\apps\\apps.php",
+  "SelectedNode": "\\db.php",
   "PreviewInSolutionExplorer": false
 }

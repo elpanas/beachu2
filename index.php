@@ -14,8 +14,8 @@ switch(true) {
     include 'apps/apps.php';
     break;
 
-    case 'web': // web
-    break;
+    /* case 'web': 
+    break; */
 
     default:
     echo 'Accesso negato';
