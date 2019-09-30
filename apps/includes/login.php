@@ -2,7 +2,7 @@
 $dati = loginUtente($db,$content['username'],$content['password']);
 
 if ($dati != null)
-    inserisceSessione($dati['idu']);  
+    inserisceSessione($db,$dati['idu']);  
 else
     $dati['idu'] = 0;
    
