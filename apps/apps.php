@@ -27,7 +27,8 @@ switch($content['azione']) {
     break;
 
     case 'inserisciutente':
-    $risposta = inserisceUtente($db,$content);
+    echo inserisceUtente($db,$content);
+    exit;
     break;
 
     case 'aggiornautente':
