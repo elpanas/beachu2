@@ -136,10 +136,7 @@ function inserisceSessione($db,$idu) {
 // inserisce un nuovo utente
 function inserisceStabilimento($db,          // input: oggetto per comunicare col database
                                $content) {   // input: dati json   
-
-    $lat = (isset($content['latitudine'])) ? $content['latitudine'] : null;
-    $long = (isset($content['longitudine'])) ? $content['longitudine'] : null; 
-    
+       
     $query = "INSERT
               INTO stabilimenti (nome,                                 
                                  localita,                                 
@@ -149,9 +146,9 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                                  ombrelloni,
                                  disponibili)
               VALUES ('".$content['nome']."',                                                          
-                      '".$content['localita']."',                       
-                      $lat,
-                      $long,
+                      '".$content['localita']."', 
+                      ".$content['latitudine'].", 
+                      ".$content['longitudine'].",                      
                       ".$content['idu'].",  
                       ".$content['ombrelloni'].",
                       ".$content['ombrelloni'].")";
