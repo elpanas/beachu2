@@ -106,7 +106,7 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
     $query = "INSERT
               INTO stabilimenti (nome,                                 
                                  localita, 
-                                 provincia                                
+                                 provincia,                              
                                  latitudine,
                                  longitudine,
                                  idu,
