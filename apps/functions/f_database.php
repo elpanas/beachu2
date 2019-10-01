@@ -167,7 +167,7 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
     if ($db->query($query))
         return "1";
     else
-        return "0";
+        return $db->mysql_error();
 }
 
 function inserisceUtente($db,
