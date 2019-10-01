@@ -14,16 +14,6 @@ function aggiornaOmbrelloni($db,            // input: oggetto per comunicare col
         return 0;
 }
 
-// controlla se l'utente è loggato ed elimina le sessioni scadute
-function aggiornaSessione($db,       // input: oggetto per comunicare col database
-                          $idu){    // input: id della chat
-    
-    $db->query("UPDATE utenti
-                SET sessione = 0
-                WHERE TIMEDIFF(NOW(),sessione) > '24:00:00' AND
-                      id = $idu");
-}
-
 function aggiornaUtente($db,
                         $content) { //input: dati json
     $db->query("UPDATE utenti
@@ -34,25 +24,6 @@ function aggiornaUtente($db,
                     telefono = ".$content['telefono'].",
                     mail = ".$content['mail']."
                 WHERE id = ".$content['id']);
-}
-
-// controlla se l'utente è registrato ma deve inserire la password
-function controllaSessione($db,      // input: oggetto per comunicare col database                      
-                           $idu) {                    
-
-    $dati = 0; // output: array associativo con i dati    
-    $query = "SELECT IF(TIMEDIFF(NOW(),sessione) > '24:00:00',0,1) as loggato
-              FROM utenti
-              WHERE id = $idu";
-   
-    if($result = $db->query($query))        
-        if ($result->num_rows > 0)
-            while($row = $result->fetch_assoc())
-                $dati = $row['loggato'];
- 
-    $result->free(); // libera la memoria
-
-    return $dati; 
 }
 
 // elimina lo stabilimento
@@ -84,7 +55,8 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
 	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
 		        $elenco[$i++] = array('Id' => $row['id'],
                                       'Nome' => $row['nome'],                                      
-                                      'Localita' => $row['localita'],                                       
+                                      'Localita' => $row['localita'],  
+                                      'Provincia' => $row['provincia'],
                                       'Ombrelloni' => $row['ombrelloni'],  	              
                                       'Disponibili' => $row['disponibili'],
                                       'Latitudine' => $row['latitudine'],
@@ -109,9 +81,7 @@ function estraeStabilimento($db,          // input: oggetto per comunicare col d
         if($result->num_rows > 0) // verifica che esistano record nel db	    		
 	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
 		        $elenco[$i++] = array('Id' => $row['id'],
-                                      'Nome' => $row['nome'],
-                                      'Strada' => $row['strada'],
-                                      'Civico' => $row['civico'],
+                                      'Nome' => $row['nome'],                                      
                                       'Localita' => $row['localita'], 
                                       'Provincia' => $row['provincia'], 
                                       'Cap' => $row['cap'], 
@@ -135,7 +105,8 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
        
     $query = "INSERT
               INTO stabilimenti (nome,                                 
-                                 localita,                                 
+                                 localita, 
+                                 provincia                                
                                  latitudine,
                                  longitudine,
                                  idu,
@@ -143,6 +114,7 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                                  disponibili)
               VALUES ('".$content['nome']."',                                                          
                       '".$content['localita']."', 
+                      '".$content['provincia']."',
                       ".$content['latitudine'].", 
                       ".$content['longitudine'].",                      
                       ".$content['idu'].",  

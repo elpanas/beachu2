@@ -2,9 +2,6 @@
 require 'functions/f_database.php';
 
 switch($content['azione']) {
-    case 'sessione':
-    include 'includes/sessione.php';
-    break;
 
     case 'login':
     include 'includes/login.php';
