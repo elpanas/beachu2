@@ -73,19 +73,52 @@ function eliminaStabilimento($db,          // input: oggetto per comunicare col 
 function estraeElenco($db,          // input: oggetto per comunicare col database
                       $id) {        // input: id gestore
 
-    $elenco = 0; // output: dati degli stabilimenti 
+    $elenco = null; // output: dati degli stabilimenti 
     $i = 0;
     $query = "SELECT * FROM stabilimenti 
-              WHERE idu = $id                   
-                    ORDER BY localita, nome";
+              WHERE idu = $id                  
+              ORDER BY localita, nome";
 	
     if($result = $db->query($query)) // effettua la query    
         if($result->num_rows > 0) // verifica che esistano record nel db	    		
 	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
 		        $elenco[$i++] = array('Id' => $row['id'],
                                       'Nome' => $row['nome'],
-                                      'Indirizzo' => $row['indirizzo'],
+                                      'Strada' => $row['strada'],
+                                      'Civico' => $row['civico'],
                                       'Localita' => $row['localita'], 
+                                      'Provincia' => $row['provincia'], 
+                                      'Cap' => $row['cap'], 
+                                      'Ombrelloni' => $row['ombrelloni'],  	              
+                                      'Disponibili' => $row['disponibili'],
+                                      'Latitudine' => $row['latitudine'],
+                                      'Longitudine' => $row['longitudine']);
+    
+    $result->free(); // libera la memoria
+	
+    return $elenco; // array 
+}
+
+// restituisce una lista degli stabilimenti di un dato utente
+function estraeStabilimento($db,          // input: oggetto per comunicare col database                            
+                            $ids) {        // input: id gestore
+
+    $elenco = null; // output: dati degli stabilimenti 
+    $i = 0;
+    $query = "SELECT * FROM stabilimenti 
+              WHERE id = $ids                   
+              ORDER BY localita, nome";
+	
+    if($result = $db->query($query)) // effettua la query    
+        if($result->num_rows > 0) // verifica che esistano record nel db	    		
+	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
+		        $elenco[$i++] = array('Id' => $row['id'],
+                                      'Nome' => $row['nome'],
+                                      'Strada' => $row['strada'],
+                                      'Civico' => $row['civico'],
+                                      'Localita' => $row['localita'], 
+                                      'Provincia' => $row['provincia'], 
+                                      'Cap' => $row['cap'], 
                                       'Ombrelloni' => $row['ombrelloni'],  	              
                                       'Disponibili' => $row['disponibili'],
                                       'Latitudine' => $row['latitudine'],
@@ -105,27 +138,32 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                                $content) {   // input: dati json   
 
     $lat = (isset($content['latitudine'])) ? $content['latitudine'] : null;
-    $long = (isset($content['longitudine'])) ? $content['longitudine'] : null;     
-
-    $indirizzo = $content['strada'].",".
+    $long = (isset($content['longitudine'])) ? $content['longitudine'] : null; 
     
     $query = "INSERT
               INTO stabilimenti (nome,
-                                 indirizzo,
+                                 strada,
+                                 civico,
                                  localita,
+                                 provincia,
+                                 cap,
                                  latitudine,
                                  longitudine,
                                  idu,
                                  ombrelloni,
                                  disponibili)
-              VALUES (".$content['nome'].",   
-                      ".$content['indirizzo'].",                                                                
-                      ".$content['localita'].",                      
+              VALUES ('".$content['nome']."',  
+                      '".$content['strada']."',  
+                      ".$content['civico'].",                                                                                      
+                      '".$content['localita']."',  
+                      '".$content['provincia']."',
+                      ".$content['cap'].",
                       $lat,
                       $long,
                       ".$content['idu'].",  
                       ".$content['ombrelloni'].",
-                      ".$content['ombrelloni'].")";
+                      ".$content['ombrelloni'].")
+              ON DUPLICATE KEY UPDATE ombrelloni = ".$content['ombrelloni'];
 
     if ($db->query($query))
         return 1;

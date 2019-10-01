@@ -14,6 +14,10 @@ switch($content['azione']) {
     $risposta = estraeElenco($db,$content['idu']);
     break;
 
+    case 'datistabilimento':
+    $risposta = estraeStabilimento($db,$content['idu']);
+    break;
+
     case 'eliminastabilimento':
     $risposta = eliminaStabilimento($db,$content['ids']);
     break;
