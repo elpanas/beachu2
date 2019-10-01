@@ -162,8 +162,7 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                       $long,
                       ".$content['idu'].",  
                       ".$content['ombrelloni'].",
-                      ".$content['ombrelloni'].")
-              ON DUPLICATE KEY UPDATE ombrelloni = ".$content['ombrelloni'];
+                      ".$content['ombrelloni'].")";
 
     if ($db->query($query))
         return "1";
