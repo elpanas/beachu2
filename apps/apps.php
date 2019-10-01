@@ -12,7 +12,7 @@ switch($content['azione']) {
     break;
 
     case 'datistabilimento':
-    $risposta = estraeStabilimento($db,$content['idu']);
+    $risposta = estraeStabilimento($db,$content['ids']);
     break;
 
     case 'eliminastabilimento':
