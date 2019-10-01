@@ -83,12 +83,8 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
         if($result->num_rows > 0) // verifica che esistano record nel db	    		
 	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
 		        $elenco[$i++] = array('Id' => $row['id'],
-                                      'Nome' => $row['nome'],
-                                      'Strada' => $row['strada'],
-                                      'Civico' => $row['civico'],
-                                      'Localita' => $row['localita'], 
-                                      'Provincia' => $row['provincia'], 
-                                      'Cap' => $row['cap'], 
+                                      'Nome' => $row['nome'],                                      
+                                      'Localita' => $row['localita'],                                       
                                       'Ombrelloni' => $row['ombrelloni'],  	              
                                       'Disponibili' => $row['disponibili'],
                                       'Latitudine' => $row['latitudine'],
