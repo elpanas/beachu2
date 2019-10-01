@@ -141,23 +141,15 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
     $long = (isset($content['longitudine'])) ? $content['longitudine'] : null; 
     
     $query = "INSERT
-              INTO stabilimenti (nome,
-                                 strada,
-                                 civico,
-                                 localita,
-                                 provincia,
-                                 cap,
+              INTO stabilimenti (nome,                                 
+                                 localita,                                 
                                  latitudine,
                                  longitudine,
                                  idu,
                                  ombrelloni,
                                  disponibili)
-              VALUES ('".$content['nome']."',  
-                      '".$content['strada']."',  
-                      ".$content['civico'].",                                                                                      
-                      '".$content['localita']."',  
-                      '".$content['provincia']."',
-                      ".$content['cap'].",
+              VALUES ('".$content['nome']."',                                                          
+                      '".$content['localita']."',                       
                       $lat,
                       $long,
                       ".$content['idu'].",  
@@ -165,9 +157,9 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                       ".$content['ombrelloni'].")";
 
     if ($db->query($query))
-        return "1";
+        return 1;
     else
-        return $db->mysql_error();
+        return 0;
 }
 
 function inserisceUtente($db,
