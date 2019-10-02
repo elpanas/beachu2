@@ -40,7 +40,7 @@ function cercaStabilimenti($db,
     {
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
-        $where = "ABS((SQRT((POW(latitudine,2) - POW($lat,2)) + (POW(longitudine,2) - POW($long,2)))) <= 3000";        
+        $where = "(SQRT( (POW(latitudine,2) - POW($lat,2)) + (POW(longitudine,2) - POW($long,2)))) <= 3";        
     }
         
     $elenco = null; // output: dati degli stabilimenti 
@@ -49,7 +49,8 @@ function cercaStabilimenti($db,
               WHERE $where
               ORDER BY localita, nome";
 	
-    if($result = $db->query($query)) // effettua la query    
+    if($result = $db->query($query)) // effettua la query   
+    { 
         if($result->num_rows > 0) // verifica che esistano record nel db	    		
 	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
 		        $elenco[$i++] = array('Id' => $row['id'],
@@ -60,7 +61,8 @@ function cercaStabilimenti($db,
                                       'Latitudine' => $row['latitudine'],
                                       'Longitudine' => $row['longitudine']);
     
-    $result->free(); // libera la memoria
+        $result->free(); // libera la memoria
+    }
 	
     return $elenco; // array 
 }
