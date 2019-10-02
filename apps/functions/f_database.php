@@ -33,7 +33,7 @@ function cercaStabilimenti($db,
     if ($content["azione"] == "cercalocalita")
     {
         $localita = $content["localita"];
-        $provincia = $content["localita"];
+        $provincia = $content["provincia"];
         $where = "localita = $localita AND provincia = $provincia";
     }
     else
