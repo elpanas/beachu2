@@ -2,17 +2,14 @@
 require 'functions/f_database.php';
 
 switch($content['azione']) {
-
+    
+    // gestore
     case 'login':
-    include 'includes/login.php';
+    include 'includes/login.php';    
     break;
 
     case 'listastabilimenti':
     $risposta = estraeElenco($db,$content['idu']);
-    break;
-
-    case 'datistabilimento':
-    $risposta = estraeStabilimento($db,$content['ids']);
     break;
 
     case 'eliminastabilimento':
@@ -33,7 +30,14 @@ switch($content['azione']) {
 
     case 'aggiornautente':
     $risposta = aggiornaUtente($db,$content);
-    break;    
+    break;   
+
+    // utente
+    case 'cercaposizione':
+    case 'cercalocalita':
+    $risposta = cercaStabilimenti($db,$content);
+    break;
 }
 
+header('Content-Type:application/json');
 echo json_encode($risposta);

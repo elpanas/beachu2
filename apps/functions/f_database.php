@@ -26,6 +26,45 @@ function aggiornaUtente($db,
                 WHERE id = ".$content['id']);
 }
 
+// Estrae gli stabilimenti distanti al max 3 Km
+function cercaStabilimenti($db,
+                           $content) {
+
+    if ($content["azione"] == "cercalocalita")
+    {
+        $localita = $content["localita"];
+        $provincia = $content["localita"];
+        $where = "localita = $localita AND provincia = $provincia";
+    }
+    else
+    {
+        $lat = $content['latitudine'];
+        $long = $content['longitudine'];
+        $where = "ABS((SQRT((POW(latitudine,2) - POW($lat,2)) + (POW(longitudine,2) - POW($long,2)))) <= 3000";        
+    }
+        
+    $elenco = null; // output: dati degli stabilimenti 
+    $i = 0;
+    $query = "SELECT * FROM stabilimenti 
+              WHERE $where
+              ORDER BY localita, nome";
+	
+    if($result = $db->query($query)) // effettua la query    
+        if($result->num_rows > 0) // verifica che esistano record nel db	    		
+	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
+		        $elenco[$i++] = array('Id' => $row['id'],
+                                      'Nome' => $row['nome'],                                      
+                                      'Localita' => $row['localita'],  
+                                      'Provincia' => $row['provincia'],                                                    
+                                      'Disponibili' => $row['disponibili'],
+                                      'Latitudine' => $row['latitudine'],
+                                      'Longitudine' => $row['longitudine']);
+    
+    $result->free(); // libera la memoria
+	
+    return $elenco; // array 
+}
+
 // elimina lo stabilimento
 function eliminaStabilimento($db,          // input: oggetto per comunicare col database
                              $id) {   // input: dati json   
@@ -61,32 +100,6 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
                                       'Disponibili' => $row['disponibili'],
                                       'Latitudine' => $row['latitudine'],
                                       'Longitudine' => $row['longitudine']);
-    
-    $result->free(); // libera la memoria
-	
-    return $elenco; // array 
-}
-
-// restituisce una lista degli stabilimenti di un dato utente
-function estraeStabilimento($db,          // input: oggetto per comunicare col database                            
-                            $ids) {        // input: id gestore
-
-    $elenco = null; // output: dati degli stabilimenti     
-    $query = "SELECT * FROM stabilimenti 
-              WHERE id = $ids                   
-              ORDER BY localita, nome";
-	
-    if($result = $db->query($query)) // effettua la query    
-        if($result->num_rows > 0) // verifica che esistano record nel db	    		
-	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
-		        $elenco = array('Id' => $row['id'],
-                                'Nome' => $row['nome'],                                      
-                                'Localita' => $row['localita'], 
-                                'Provincia' => $row['provincia'],                                       
-                                'Ombrelloni' => $row['ombrelloni'],  	              
-                                'Disponibili' => $row['disponibili'],
-                                'Latitudine' => $row['latitudine'],
-                                'Longitudine' => $row['longitudine']);
     
     $result->free(); // libera la memoria
 	
