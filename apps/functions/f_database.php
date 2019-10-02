@@ -40,7 +40,7 @@ function cercaStabilimenti($db,
     {
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
-        $where = "(SQRT( (POW(latitudine,2) - POW($lat,2)) + (POW(longitudine,2) - POW($long,2)))) <= 3000";        
+        $where = "TRUNCATE(6363 * SQRT( POW( RADIANS('$lat') - RADIANS(latitude),2) + POW( RADIANS('$long') - RADIANS(longitude),2 ) ),3) <= 3000";        
     }
         
     $elenco = null; // output: dati degli stabilimenti 
