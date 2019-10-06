@@ -40,7 +40,7 @@ function cercaStabilimenti($db,
     {
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
-        $where = "6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 300";        
+        $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";        
     }
         
     $elenco = null; // output: dati degli stabilimenti 
@@ -60,7 +60,8 @@ function cercaStabilimenti($db,
                                       'Ombrelloni' => $row['ombrelloni'],                                                  
                                       'Disponibili' => $row['disponibili'],
                                       'Latitudine' => $row['latitudine'],
-                                      'Longitudine' => $row['longitudine']);
+                                      'Longitudine' => $row['longitudine'],
+                                      'Telefono' => $row['telefono']);
     
         $result->free(); // libera la memoria
     }

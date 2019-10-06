@@ -3,9 +3,7 @@
     "",
     "\\apps",
     "\\apps\\functions",
-    "\\apps\\includes",
-    "\\telegram\\functions",
-    "\\telegram\\includes"
+    "\\apps\\includes"
   ],
   "SelectedNode": "\\apps\\functions\\f_database.php",
   "PreviewInSolutionExplorer": false
