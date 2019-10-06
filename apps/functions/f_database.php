@@ -34,7 +34,7 @@ function cercaStabilimenti($db,
     {
         $localita = $content["localita"];
         $provincia = $content["provincia"];
-        $where = "localita LIKE %'$localita' AND provincia LIKE %'$provincia'";
+        $where = "localita LIKE %'$localita'% AND provincia LIKE %'$provincia'%";
     }
     else
     {
