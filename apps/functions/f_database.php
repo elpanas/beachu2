@@ -133,7 +133,8 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                       ".$content['longitudine'].",                      
                       ".$content['idu'].",  
                       ".$content['ombrelloni'].",
-                      ".$content['ombrelloni'].")";
+                      ".$content['ombrelloni'].")
+              ON DUPLICATE KEY UPDATE ombrelloni = ".$content['ombrelloni'];
 
     if ($db->query($query))
         return 1;
@@ -148,8 +149,8 @@ function inserisceUtente($db,
     $cognome = $content['cognome'];
     $username = $content['username'];
     $password = $content['password'];
-    $telefono = $content['telefono'];
-    $email = $content['email'];
+    $telefono = (isset($content['telefono'])) ? $content['telefono'] : null;
+    $email = (isset($content['email'])) ? $content['email'] : null;;
 
     $query = "INSERT INTO utenti (nome,
                                   cognome,

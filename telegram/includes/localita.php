@@ -1,7 +1,7 @@
 <?php 
 $elenco = null; // inizializza la variabile
 
-$elenco = estraeElenco($db,$messaggio); // estrae i disponibili dal db
+$elenco = estraePerLocalita($db,$messaggio); // estrae i disponibili dal db
 $output = creaElenco($elenco,false); // crea l'elenco degli stabilimenti
 $text = $output['testo'];
 

@@ -1,9 +1,6 @@
 <?php
 // converte le coordinate nella località corrispondente
-$localita = mapboxReverse($longitudine, // input: longitudine
-                          $latitudine); // input: latitutdine
-
-$elenco = estraeElenco($db,$localita); // estrae i disponibili dal db
+$elenco = estraePerCoordinate($db,$lat,$long); // estrae i disponibili dal db
 $output = creaElenco($elenco,false); // crea un array con l'insieme degli stabilimenti forniti
 $text = $output['testo'];
 

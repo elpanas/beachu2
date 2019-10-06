@@ -7,8 +7,6 @@ Esempio: "riccione" oppure "torre pedrera"
 <b>Posizione:</b>
 premi sul bottone in basso per visualizzare gli stabilimenti disponibili vicini alla tua posizione attuale
 <b>/preferiti:</b>
-visualizza la tua lista degli stabilimenti preferiti
-<b>/reset:</b>
-resetta la password per eccedere ai preferiti';
+visualizza la tua lista degli stabilimenti preferiti';
 
 $encodedMarkup = creaMenuKeyboard();    // crea il menu a tastiera
