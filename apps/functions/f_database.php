@@ -110,6 +110,33 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
     return $elenco; // array 
 }
 
+// restituisce una lista degli stabilimenti di un dato utente
+function estraeStabilimento($db,          // input: oggetto per comunicare col database
+                            $ids) {        // input: id gestore
+
+    $elenco = null; // output: dati degli stabilimenti 
+    $i = 0;
+    $query = "SELECT * FROM stabilimenti 
+              WHERE id = $ids";
+	
+    if($result = $db->query($query)) // effettua la query    
+        if($result->num_rows > 0) // verifica che esistano record nel db	    		
+	        while($row = $result->fetch_assoc())  // converte in un array associativo	    
+		        $elenco = array('Id' => $row['id'],
+                                'Nome' => $row['nome'],                                      
+                                'Localita' => $row['localita'],  
+                                'Provincia' => $row['provincia'],
+                                'Ombrelloni' => $row['ombrelloni'],  	              
+                                'Disponibili' => $row['disponibili'],
+                                'Latitudine' => $row['latitudine'],
+                                'Longitudine' => $row['longitudine'],
+                                'Telefono' => $row['telefono']);
+    
+    $result->free(); // libera la memoria
+	
+    return $elenco; // array 
+}
+
 function inserisceSessione($db,$idu) {
     $db->query("UPDATE utenti SET sessione = NOW() WHERE id = $idu");
 }

@@ -24,6 +24,10 @@ switch($content['azione']) {
     $risposta = aggiornaOmbrelloni($db,$content['ids'],$content['ombrelloni']);
     break;
 
+    case 'estraestabilimento':
+    $risposta = estraeStabilimento($db,$content['ids']);
+    break;
+
     case 'inserisciutente':
     $risposta = inserisceUtente($db,$content);    
     break;
