@@ -42,11 +42,12 @@ function cercaStabilimenti($db,
         $long = $content['longitudine'];
 
         $latRad = $lat * pi() / 180;
+        $longRad = $long * pi() / 180;
         $latCos = cos($latRad);
         $distanza = pow((5/110.25),2);
-        // $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";
+        $where = "(6363 * SQRT( POW($latRad - RADIANS(latitudine),2) + POW($longRad - RADIANS(longitudine),2) )) < 3";
 
-        $where = "(POW(latitudine-$lat,2) + POW( (longitudine-$long) * $latCos ,2)) < $distanza";
+        // $where = "(POW(latitudine-$lat,2) + POW( (longitudine-$long) * $latCos ,2)) < $distanza";
     }
         
     $elenco = null; // output: dati degli stabilimenti 
