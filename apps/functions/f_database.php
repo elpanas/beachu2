@@ -41,7 +41,7 @@ function cercaStabilimenti($db,
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
 
-        $latRad = $lat * pi / 180;
+        $latRad = $lat * pi() / 180;
         $latCos = cos($latRad);
         $distanza = pow((3/110.25),2);
         // $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";
