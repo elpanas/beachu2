@@ -47,22 +47,22 @@ function cercaStabilimenti($db,
                     LineString
                             (
                             Point (
-                                    longitudine + 3 / ( 111.1 / COS(RADIANS(latitudine))),
+                                    longitudine + 3 / ( 111.1 / COS(RADIANS(latitudine)))
                                     latitudine + 3 / 111.1
                                   ),
                             Point (
-                                    longitudine - 3 / ( 111.1 / COS(RADIANS(latitudine))),
+                                    longitudine - 3 / ( 111.1 / COS(RADIANS(latitudine)))
                                     latitudine - 3 / 111.1
                                   ) 
                             ),
                     LineString
                             (
                             Point (
-                                    $long + 3 / ( 111.1 / COS(RADIANS($lat))),
+                                    $long + 3 / ( 111.1 / COS(RADIANS($lat)))
                                     $lat + 3 / 111.1
                                   ),
                             Point (
-                                    $long - 3 / ( 111.1 / COS(RADIANS($lat))),
+                                    $long - 3 / ( 111.1 / COS(RADIANS($lat)))
                                     $lat - 3 / 111.1
                                   ) 
                             )
