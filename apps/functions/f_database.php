@@ -66,7 +66,7 @@ function cercaStabilimenti($db,
                                     $lat - 3 / 111.1
                                   ) 
                             )
-                    ) = 1";
+                    )";
     }
         
     $elenco = null; // output: dati degli stabilimenti 
