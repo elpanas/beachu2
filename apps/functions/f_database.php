@@ -42,31 +42,7 @@ function cercaStabilimenti($db,
         $long = $content['longitudine'];
         // $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";
 
-        $where = "MBRContains
-                    (
-                    LineString
-                            (
-                            Point (
-                                    longitudine + 3 / ( 111.1 / COS(RADIANS(latitudine)))
-                                    latitudine + 3 / 111.1
-                                  ),
-                            Point (
-                                    longitudine - 3 / ( 111.1 / COS(RADIANS(latitudine)))
-                                    latitudine - 3 / 111.1
-                                  ) 
-                            ),
-                    LineString
-                            (
-                            Point (
-                                    $long + 3 / ( 111.1 / COS(RADIANS($lat)))
-                                    $lat + 3 / 111.1
-                                  ),
-                            Point (
-                                    $long - 3 / ( 111.1 / COS(RADIANS($lat)))
-                                    $lat - 3 / 111.1
-                                  ) 
-                            )
-                    )";
+        $where = "POW(latitudine-$lat,2) + POW( (longitudine-$long) * COS(RADIANS($lat)) ,2) < POW(3/110.25,2)";
     }
         
     $elenco = null; // output: dati degli stabilimenti 
