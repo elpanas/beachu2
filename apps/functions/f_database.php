@@ -43,10 +43,10 @@ function cercaStabilimenti($db,
 
         $latRad = $lat * pi() / 180;
         $latCos = cos($latRad);
-        $distanza = pow((3/110.25),2);
+        $distanza = pow((5/110.25),2);
         // $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";
 
-        $where = "POW(latitudine-$lat,2) + POW( (longitudine-$long) * $latCos ,2) < $distanza";
+        $where = "(POW(latitudine-$lat,2) + POW( (longitudine-$long) * $latCos ,2)) < $distanza";
     }
         
     $elenco = null; // output: dati degli stabilimenti 
