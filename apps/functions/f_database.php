@@ -40,7 +40,7 @@ function cercaStabilimenti($db,
     {
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
-        $where = "ST_Distance_Sphere(ST_GeomFromText('POINT(longitudine latitudine)'), ST_GeomFromText('POINT($long $lat)')) < 3000";        
+        $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";        
     }
         
     $elenco = null; // output: dati degli stabilimenti 
