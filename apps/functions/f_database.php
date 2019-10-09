@@ -40,7 +40,23 @@ function cercaStabilimenti($db,
     {
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
-        $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";        
+        // $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";
+        
+        $where = "MBRContains
+                    (
+                    LineString
+                            (
+                            Point (
+                                    longitudine + 3 / ( 111.1 / COS(RADIANS(latitudine))),
+                                    @lat + 3 / 111.1
+                                  ),
+                            Point (
+                                    $long - 3 / ( 111.1 / COS(RADIANS($lat))),
+                                    $lat - 3 / 111.1
+                                  ) 
+                            ),
+                    mypoint
+                    )";
     }
         
     $elenco = null; // output: dati degli stabilimenti 
