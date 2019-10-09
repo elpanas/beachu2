@@ -40,7 +40,7 @@ function cercaStabilimenti($db,
     {
         $lat = $content['latitudine'];
         $long = $content['longitudine'];
-        $where = "(6363 * SQRT( POW(RADIANS($lat) - RADIANS(latitudine),2) + POW(RADIANS($long) - RADIANS(longitudine),2) ) < 3)";        
+        $where = "ST_Distance_Sphere(ST_GeomFromText('POINT(longitudine latitudine)'), ST_GeomFromText('POINT($long $lat)')) < 3000";        
     }
         
     $elenco = null; // output: dati degli stabilimenti 
@@ -103,7 +103,8 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
                                       'Ombrelloni' => $row['ombrelloni'],  	              
                                       'Disponibili' => $row['disponibili'],
                                       'Latitudine' => $row['latitudine'],
-                                      'Longitudine' => $row['longitudine']);
+                                      'Longitudine' => $row['longitudine'],
+                                      'Telefono' => $row['telefono']);
     
     $result->free(); // libera la memoria
 	
