@@ -45,15 +45,14 @@ function cercaStabilimenti($db,
         $longRad = $long * pi() / 180;
         $latCos = cos($latRad);
         $distanza = pow((5/110.25),2);
-        $where = "(6363 * SQRT( POW($latRad - RADIANS(latitudine),2) + POW($longRad - RADIANS(longitudine),2) )) < 3";
+        // $where = "(6363 * SQRT( POW($latRad - RADIANS(latitudine),2) + POW($longRad - RADIANS(longitudine),2) )) < 3";
 
         // $where = "(POW(latitudine-$lat,2) + POW( (longitudine-$long) * $latCos ,2)) < $distanza";
     }
         
     $elenco = null; // output: dati degli stabilimenti 
     $i = 0;
-    $query = "SELECT * FROM stabilimenti 
-              WHERE $where
+    $query = "SELECT * FROM stabilimenti               
               ORDER BY localita, nome";
 	
     if($result = $db->query($query)) // effettua la query   
