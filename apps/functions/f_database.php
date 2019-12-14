@@ -118,6 +118,11 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
     return $elenco; // array 
 }
 
+function estraeLiberi($db,
+                      $content) {
+
+}
+
 // restituisce una lista degli stabilimenti di un dato utente
 function estraeStabilimento($db,          // input: oggetto per comunicare col database
                             $ids) {        // input: id gestore
@@ -143,6 +148,35 @@ function estraeStabilimento($db,          // input: oggetto per comunicare col d
     $result->free(); // libera la memoria
 	
     return $elenco; // array 
+}
+
+function inserisciLibero($db,
+                         $content) {
+
+    $nome = $content['nome'];
+    $cognome = $content['cognome'];
+    $numero = $content['numero'];
+    $inizio = $content['inizio'];
+    $fine = $content['fine'];
+
+    $query = "INSERT INTO temporanei(nome,
+                                     cognome,
+                                     numero,
+                                     inizio,
+                                     fine)
+              VALUES('$nome',
+                     '$cognome',
+                      $numero,
+                     STR_TO_DATE('$inizio','%d %m %Y'),
+                     STR_TO_DATE('$fine','%d %m %Y'))
+              ON DUPLICATE KEY UPDATE numero = $numero,
+                                      inizio = STR_TO_DATE('$inizio','%d %m %Y'),
+                                      fine = STR_TO_DATE('$fine','%d %m %Y')";
+
+    if ($db->query($query))
+        return 1;
+    else
+        return 0;
 }
 
 function inserisceSessione($db,$idu) {
@@ -200,7 +234,6 @@ function inserisceUtente($db,
     else
         return "0";
 }
-
 
 // controlla se l'utente è registrato ma deve inserire la password
 function loginUtente($db,      // input: oggetto per comunicare col database
