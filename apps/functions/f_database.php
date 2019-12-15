@@ -25,7 +25,7 @@ function aggiornaUtente($db,
     $mail = $content['mail'];
 
     $query = "UPDATE utenti
-              SET nome = '$nome'
+              SET nome = '$nome',
                   cognome = '$cognome',                  
                   telefono = '$tel',
                   email = '$mail'
