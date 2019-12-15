@@ -17,7 +17,7 @@ function aggiornaOmbrelloni($db,            // input: oggetto per comunicare col
 function aggiornaUtente($db,
                         $content) { //input: dati json
 
-    $output = "0";
+    $output = 0;
 
     $query = "UPDATE utenti
               SET nome = ".$content['nome'].",
@@ -26,7 +26,7 @@ function aggiornaUtente($db,
                   email = ".$content['mail']."
                 WHERE id = ".$content['id'];
 
-    if ($db->query($query)) $output = "1";
+    if ($db->query($query)) $output = 1;
 
     return $output;
 }
