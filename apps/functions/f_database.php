@@ -260,16 +260,14 @@ function loginUtente($db,      // input: oggetto per comunicare col database
 
     $dati = null; // output: array associativo con i dati
     
-    $query = "SELECT id, telefono, email                                        
+    $query = "SELECT id                                       
               FROM utenti
               WHERE username = '$user' AND password = '$psw'";
    
     if($result = $db->query($query))        
         if ($result->num_rows > 0)
             while($row = $result->fetch_assoc())            
-                $dati = array('Id' => $row['id'],
-                              'Telefono' => $row['telefono'],
-                              'Email' => $row['email']);  
+                $dati = array('Id' => $row['id']);  
  
     $result->free(); // libera la memoria
 
