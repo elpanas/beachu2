@@ -21,9 +21,7 @@ function aggiornaUtente($db,
 
     $query = "UPDATE utenti
               SET nome = ".$content['nome'].",
-                  cognome = ".$content['cognome'].",
-                  username = ".$content['username'].",
-                  password = ".$content['password'].",
+                  cognome = ".$content['cognome'].",                  
                   telefono = ".$content['telefono'].",
                   mail = ".$content['mail']."
                 WHERE id = ".$content['id'];
