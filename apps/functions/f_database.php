@@ -18,15 +18,20 @@ function aggiornaUtente($db,
                         $content) { //input: dati json
 
     $output = 0;
+    $id = $content['id'];
+    $nome = $content['nome'];
+    $cognome = $content['cognome'];
+    $tel = $content['telefono'];
+    $mail = $content['mail'];
 
     $query = "UPDATE utenti
-              SET nome = ".$content['nome'].",
-                  cognome = ".$content['cognome'].",                  
-                  telefono = ".$content['telefono'].",
-                  email = ".$content['mail']."
-                WHERE id = ".$content['id'];
+              SET nome = '$nome'
+                  cognome = '$cognome',                  
+                  telefono = '$tel',
+                  email = '$mail'
+                WHERE id = $id";
 
-    if ($db->query($query)) $output = 0;      
+    if ($db->query($query)) $output = 1;      
 
     return $output;
 }
