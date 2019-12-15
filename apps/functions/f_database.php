@@ -201,7 +201,10 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                                  longitudine,
                                  idu,
                                  ombrelloni,
-                                 disponibili)
+                                 disponibili,
+                                 telefono,
+                                 email,
+                                 web)
               VALUES ('".$content['nome']."',                                                          
                       '".$content['localita']."', 
                       '".$content['provincia']."',
@@ -209,7 +212,10 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                       ".$content['longitudine'].",                      
                       ".$content['idu'].",  
                       ".$content['ombrelloni'].",
-                      ".$content['ombrelloni'].")
+                      ".$content['ombrelloni'].",
+                      '".$content['telefono']."',
+                      '".$content['email']."',
+                      '".$content['web']."')
               ON DUPLICATE KEY UPDATE ombrelloni = ".$content['ombrelloni'];
 
     if ($db->query($query)) $output = 1;
