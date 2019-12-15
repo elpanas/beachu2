@@ -41,10 +41,6 @@ switch($content['azione']) {
     case 'cercalocalita':
     $risposta = cercaStabilimenti($db,$content);
     break;
-
-    case 'liberaombrellone':
-    $risposta = inserisciLibero($db,$content);
-    break;
 }
 
 header('Content-Type:application/json');

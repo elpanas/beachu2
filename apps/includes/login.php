@@ -1,9 +1,7 @@
 <?php
-$dati = loginUtente($db,$content['username'],$content['password']);
+$risposta = loginUtente($db,$content['username'],$content['password']);
 
-if ($dati != null)
-    inserisceSessione($db,$dati['Id']);  
+if ($risposta != null)
+    inserisceSessione($db,$risposta['Id']);  
 else
-    $dati['Id'] = 0;
-   
-$risposta = $dati;
+    $risposta['Id'] = 0;

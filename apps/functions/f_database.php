@@ -118,11 +118,6 @@ function estraeElenco($db,          // input: oggetto per comunicare col databas
     return $elenco; // array 
 }
 
-function estraeLiberi($db,
-                      $content) {
-
-}
-
 // restituisce una lista degli stabilimenti di un dato utente
 function estraeStabilimento($db,          // input: oggetto per comunicare col database
                             $ids) {        // input: id gestore
@@ -186,7 +181,8 @@ function inserisceSessione($db,$idu) {
 // inserisce un nuovo utente
 function inserisceStabilimento($db,          // input: oggetto per comunicare col database
                                $content) {   // input: dati json   
-       
+    $output = 0;
+
     $query = "INSERT
               INTO stabilimenti (nome,                                 
                                  localita, 
@@ -206,33 +202,39 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                       ".$content['ombrelloni'].")
               ON DUPLICATE KEY UPDATE ombrelloni = ".$content['ombrelloni'];
 
-    if ($db->query($query))
-        return 1;
-    else
-        return 0;
+    if ($db->query($query)) $output = 1;
+    
+    return $output;
 }
 
 function inserisceUtente($db,
                          $content) { //input: dati json
 
+    $output = 0;
+
     $nome = $content['nome'];
     $cognome = $content['cognome'];
     $username = $content['username'];
-    $password = $content['password'];    
+    $password = $content['password'];  
+    $telefono = $content['telefono'];
+    $email = $content['email'];
 
     $query = "INSERT INTO utenti (nome,
                                   cognome,
                                   username,
-                                  password)
+                                  password,
+                                  telefono,
+                                  email)
               VALUES('$nome',
                      '$cognome',
                      '$username',
-                     '$password')";
+                     '$password',
+                     '$telefono',
+                     '$email')";
 
-    if ($db->query($query))
-        return "1";
-    else
-        return "0";
+    if ($db->query($query)) $output = 1;
+
+    return $output;
 }
 
 // controlla se l'utente è registrato ma deve inserire la password
