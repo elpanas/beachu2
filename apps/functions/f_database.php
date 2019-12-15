@@ -191,7 +191,7 @@ function inserisceSessione($db,$idu) {
 // inserisce un nuovo utente
 function inserisceStabilimento($db,          // input: oggetto per comunicare col database
                                $content) {   // input: dati json   
-    $output = 0;
+    $output = "0";
 
     $query = "INSERT
               INTO stabilimenti (nome,                                 
@@ -218,7 +218,7 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
                       '".$content['web']."')
               ON DUPLICATE KEY UPDATE ombrelloni = ".$content['ombrelloni'];
 
-    if ($db->query($query)) $output = 1;
+    if ($db->query($query)) $output = "1";
     
     return $output;
 }
@@ -226,29 +226,23 @@ function inserisceStabilimento($db,          // input: oggetto per comunicare co
 function inserisceUtente($db,
                          $content) { //input: dati json
 
-    $output = 0;
+    $output = "0";
 
     $nome = $content['nome'];
     $cognome = $content['cognome'];
     $username = $content['username'];
     $password = $content['password'];  
-    $telefono = $content['telefono'];
-    $email = $content['email'];
 
     $query = "INSERT INTO utenti (nome,
                                   cognome,
                                   username,
-                                  password,
-                                  telefono,
-                                  email)
+                                  password)
               VALUES('$nome',
                      '$cognome',
                      '$username',
-                     '$password',
-                     '$telefono',
-                     '$email')";
+                     '$password')";
 
-    if ($db->query($query)) $output = 1;
+    if ($db->query($query)) $output = "1";
 
     return $output;
 }
