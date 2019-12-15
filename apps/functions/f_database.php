@@ -26,11 +26,7 @@ function aggiornaUtente($db,
                   email = ".$content['mail']."
                 WHERE id = ".$content['id'];
 
-    if ($db->query($query))
-    {
-    die("Errore".$db->error);
-    $output = 1;
-    }        
+    if ($db->query($query)) $output = 0;      
 
     return $output;
 }
