@@ -16,14 +16,21 @@ function aggiornaOmbrelloni($db,            // input: oggetto per comunicare col
 
 function aggiornaUtente($db,
                         $content) { //input: dati json
-    $db->query("UPDATE utenti
-                SET nome = ".$content['nome'].",
-                    cognome = ".$content['cognome'].",
-                    username = ".$content['username'].",
-                    password = ".$content['password'].",
-                    telefono = ".$content['telefono'].",
-                    mail = ".$content['mail']."
-                WHERE id = ".$content['id']);
+
+    $output = 0;
+
+    $query = "UPDATE utenti
+              SET nome = ".$content['nome'].",
+                  cognome = ".$content['cognome'].",
+                  username = ".$content['username'].",
+                  password = ".$content['password'].",
+                  telefono = ".$content['telefono'].",
+                  mail = ".$content['mail']."
+                WHERE id = ".$content['id'];
+
+    if ($db->query($query)) $output = 1;
+
+    return $output;
 }
 
 // Estrae gli stabilimenti distanti al max 3 Km
