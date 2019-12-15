@@ -23,7 +23,7 @@ function aggiornaUtente($db,
               SET nome = ".$content['nome'].",
                   cognome = ".$content['cognome'].",                  
                   telefono = ".$content['telefono'].",
-                  mail = ".$content['mail']."
+                  email = ".$content['mail']."
                 WHERE id = ".$content['id'];
 
     if ($db->query($query)) $output = 1;
