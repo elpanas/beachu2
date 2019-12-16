@@ -252,7 +252,7 @@ function loginUtente($db,      // input: oggetto per comunicare col database
                      $user,    // input: username telegram  
                      $psw) {                    
 
-    $dati = null; // output: array associativo con i dati
+    $dati['Id'] = 0; // output: array associativo con i dati
     
     $query = "SELECT id                                       
               FROM utenti
