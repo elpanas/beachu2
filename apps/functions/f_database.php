@@ -155,35 +155,6 @@ function estraeStabilimento($db,          // input: oggetto per comunicare col d
     return $elenco; // array 
 }
 
-function inserisciLibero($db,
-                         $content) {
-
-    $nome = $content['nome'];
-    $cognome = $content['cognome'];
-    $numero = $content['numero'];
-    $inizio = $content['inizio'];
-    $fine = $content['fine'];
-
-    $query = "INSERT INTO temporanei(nome,
-                                     cognome,
-                                     numero,
-                                     inizio,
-                                     fine)
-              VALUES('$nome',
-                     '$cognome',
-                      $numero,
-                     STR_TO_DATE('$inizio','%d %m %Y'),
-                     STR_TO_DATE('$fine','%d %m %Y'))
-              ON DUPLICATE KEY UPDATE numero = $numero,
-                                      inizio = STR_TO_DATE('$inizio','%d %m %Y'),
-                                      fine = STR_TO_DATE('$fine','%d %m %Y')";
-
-    if ($db->query($query))
-        return 1;
-    else
-        return 0;
-}
-
 function inserisceSessione($db,$idu) {
     $db->query("UPDATE utenti SET sessione = NOW() WHERE id = $idu");
 }
@@ -252,7 +223,7 @@ function loginUtente($db,      // input: oggetto per comunicare col database
                      $user,    // input: username telegram  
                      $psw) {                    
 
-    $dati = null; // output: array associativo con i dati
+    $dati = array('Id' => 0); // output: array associativo con i dati
     
     $query = "SELECT id                                       
               FROM utenti
@@ -261,7 +232,7 @@ function loginUtente($db,      // input: oggetto per comunicare col database
     if($result = $db->query($query))        
         if ($result->num_rows > 0)
             while($row = $result->fetch_assoc())            
-                $dati = array('Id' => $row['id']);  
+                $dati['Id'] = $row['id'];  
  
     $result->free(); // libera la memoria
 
