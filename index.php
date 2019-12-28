@@ -7,11 +7,11 @@ $content = json_decode($inputhttp,true); // converte il formato json in array as
 
 switch(true) {
     case (isset($content['message']) || isset($content['callback_query'])): // telegram
-    include 'telegram/telegram.php';
+    include 'telegram/';
     break;
 
     case (isset($content['azione'])): // app
-    include 'apps/apps.php';
+    include 'apps/';
     break;
 
     /* case 'web': 

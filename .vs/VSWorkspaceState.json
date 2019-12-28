@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\apps",
-    "\\apps\\functions",
-    "\\apps\\includes"
+    ""
   ],
-  "SelectedNode": "\\apps\\includes\\login.php",
+  "SelectedNode": "\\apps",
   "PreviewInSolutionExplorer": false
 }
