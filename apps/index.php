@@ -41,7 +41,8 @@ switch($content['azione']) {
     case 'cercalocalita':
     $risposta = cercaStabilimenti($db,$content);
     break;
-}
+    }
 
 header('Content-Type:application/json');
 echo json_encode($risposta);
+

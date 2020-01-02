@@ -224,6 +224,8 @@ function loginUtente($db,      // input: oggetto per comunicare col database
                      $psw) {                    
 
     $dati = array('Id' => 0); // output: array associativo con i dati
+
+    // $authData = base64_encode(sha1(utf8_encode(base64_encode($user).base64_encode($psw)), true));
     
     $query = "SELECT id                                       
               FROM utenti
